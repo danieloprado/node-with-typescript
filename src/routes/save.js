@@ -1,9 +1,9 @@
-const saveValidator = require('../validators/save'),
+const userValidator = require('../validators/user'),
   userService = require('../services/user');
 
 async function save(req, res, next) {
   try {
-    const model = await saveValidator.validate(req.body);
+    const model = await userValidator(req.body);
     const user = await userService.save(model);
 
     res.json(user);
@@ -11,5 +11,6 @@ async function save(req, res, next) {
     next(err);
   }
 }
+
 
 module.exports = save;
