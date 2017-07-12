@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon ./src/index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon ./compiled/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "tsc": "tsc"
   },
   "author": "",
   "license": "ISC",
@@ -16,7 +17,9 @@
     "lodash": "^4.17.4"
   },
   "devDependencies": {
+    "@types/express": "^4.0.36",
     "eslint": "^4.2.0",
-    "nodemon": "^1.11.0"
+    "nodemon": "^1.11.0",
+    "typescript": "^2.4.1"
   }
 }

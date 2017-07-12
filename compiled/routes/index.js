@@ -1,0 +1,11 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express = require("express");
+const list = require("./list");
+const get = require("./get");
+const save = require("./save");
+var router = express.Router({ mergeParams: true });
+router.get('/', list);
+router.get('/:id', get);
+router.post('/', save);
+exports.default = router;
