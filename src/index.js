@@ -1,10 +1,12 @@
 const express = require('express'),
   bodyParser = require('body-parser'),
+  morgan = require('morgan'),
   userRoutes = require('./routes/user');
 
 const app = express();
 
 app.use(bodyParser.json());
+app.use(morgan('dev'));
 app.use('/api/user', userRoutes);
 
 app.use((err, req, res, next) => {
