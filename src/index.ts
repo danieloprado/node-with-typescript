@@ -1,7 +1,8 @@
-import express = require('express');
-import bodyParser = require('body-parser');
-import router = require('./routes');
-import error = require('./middlewares/error');
+import * as bodyParser from 'body-parser';
+import * as express from 'express';
+
+import { error } from './middlewares/error';
+import { router } from './routes';
 
 var app = express();
 
