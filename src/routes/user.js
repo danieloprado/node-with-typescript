@@ -1,7 +1,7 @@
 const express = require('express'),
-  userRepository = require('./repositories/user'),
-  userValidator = require('./validators/user'),
-  userService = require('./services/user');
+  userRepository = require('../repositories/user'),
+  userValidator = require('../validators/user'),
+  userService = require('../services/user');
 
 const router = express.Router({ mergeParams: true });
 
@@ -28,6 +28,15 @@ router.post('/', async(req, res, next) => {
     const model = await userValidator(req.body);
     const user = await userService.save(model);
     res.json(user);
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.delete('/:id', async(req, res, next) => {
+  try {
+    await userService.remove(req.params.id);
+    res.send();
   } catch (err) {
     next(err);
   }

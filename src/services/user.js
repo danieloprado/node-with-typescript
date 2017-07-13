@@ -8,6 +8,12 @@ async function save(model) {
   return await userRepository.insert(model);
 }
 
+async function remove(id) {
+  return await userRepository.remove(id);
+}
+
+
 module.exports = {
-  save
+  save,
+  remove
 }

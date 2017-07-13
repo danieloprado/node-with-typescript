@@ -1,11 +1,11 @@
 const express = require('express'),
   bodyParser = require('body-parser'),
-  router = require('./routes');
+  userRoutes = require('./routes/user');
 
 const app = express();
 
 app.use(bodyParser.json());
-app.use(router);
+app.use('/api/user', userRoutes);
 
 app.use((err, req, res, next) => {
   if (err.validationError) {
