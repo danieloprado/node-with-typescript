@@ -1,4 +1,4 @@
-const joi = require('joi');
+import * as joi from 'joi';
 
 const schema = joi.object().keys({
   id: joi.number().min(1),
@@ -12,7 +12,7 @@ const options = {
   abortEarly: false
 };
 
-function validate(body) {
+export default function validate(body) {
   return new Promise((resolve, reject) => {
     joi.validate(body, schema, options, (err, value) => {
       if (err) {
@@ -26,6 +26,3 @@ function validate(body) {
     });
   });
 }
-
-
-module.exports = validate;

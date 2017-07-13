@@ -1,11 +1,12 @@
-const express = require('express'),
-  userRepository = require('../repositories/user'),
-  userValidator = require('../validators/user'),
-  userService = require('../services/user');
+import * as express from 'express';
+import * as userRepository from '../repositories/user';
+import * as userService from '../services/user';
 
-const router = express.Router({ mergeParams: true });
+import userValidator from '../validators/user';
 
-router.get('/', async(req, res, next) => {
+export const router = express.Router({ mergeParams: true });
+
+router.get('/', async (req, res, next) => {
   try {
     const users = await userRepository.list();
     res.json(users);
@@ -14,7 +15,7 @@ router.get('/', async(req, res, next) => {
   }
 });
 
-router.get('/:id', async(req, res, next) => {
+router.get('/:id', async (req, res, next) => {
   try {
     const user = await userRepository.find(req.params.id);
     res.json(user);
@@ -23,7 +24,7 @@ router.get('/:id', async(req, res, next) => {
   }
 });
 
-router.post('/', async(req, res, next) => {
+router.post('/', async (req, res, next) => {
   try {
     const model = await userValidator(req.body);
     const user = await userService.save(model);
@@ -33,7 +34,7 @@ router.post('/', async(req, res, next) => {
   }
 });
 
-router.delete('/:id', async(req, res, next) => {
+router.delete('/:id', async (req, res, next) => {
   try {
     await userService.remove(req.params.id);
     res.send();
@@ -41,5 +42,3 @@ router.delete('/:id', async(req, res, next) => {
     next(err);
   }
 });
-
-module.exports = router;

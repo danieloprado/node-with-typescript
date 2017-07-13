@@ -1,6 +1,6 @@
-const userRepository = require('../repositories/user');
+import * as userRepository from '../repositories/user';
 
-async function save(model) {
+export async function save(model) {
   if (model.id) {
     return await userRepository.update(model);
   }
@@ -8,12 +8,6 @@ async function save(model) {
   return await userRepository.insert(model);
 }
 
-async function remove(id) {
+export async function remove(id) {
   return await userRepository.remove(id);
-}
-
-
-module.exports = {
-  save,
-  remove
 }
