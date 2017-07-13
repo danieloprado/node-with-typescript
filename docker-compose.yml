@@ -8,7 +8,5 @@ services:
       - POSTGRES_USER=node
       - POSTGRES_PASSWORD=123
       - POSTGRES_DB=node
-    volumes:
-      - "./data:/var/lib/postgresql/data"
     ports:
       - "5432:5432"

@@ -1,15 +1,16 @@
 import * as lodash from 'lodash';
 
 import { IUser } from '../interfaces/user';
+import { User } from '../models/user';
 
 const users: IUser[] = [];
 
 export async function list() {
-  return users;
+  return User.query().eager('posts');
 }
 
 export async function find(id: number) {
-  return users.find(u => u.id === id);
+  return User.query().where({ id });
 }
 
 export async function insert(user: IUser) {

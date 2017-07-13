@@ -1,9 +1,12 @@
 import 'source-map-support/register';
 
 import * as bodyParser from 'body-parser';
+import * as db from './db';
 import * as express from 'express';
 import * as morgan from 'morgan';
 import * as userRoutes from './routes/user';
+
+db.connect();
 
 const app = express();
 
@@ -20,4 +23,4 @@ app.use((err: any, req: express.Request, res: express.Response, next: express.Ne
   res.status(500).send(err.stack);
 });
 
-app.listen(8080, () => console.log('done.'));
+app.listen(3000, () => console.log('done.'));
