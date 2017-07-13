@@ -1,6 +1,8 @@
 import * as userRepository from '../repositories/user';
 
-export async function save(model) {
+import { IUser } from '../interfaces/user';
+
+export async function save(model: IUser): Promise<IUser> {
   if (model.id) {
     return await userRepository.update(model);
   }
@@ -8,6 +10,6 @@ export async function save(model) {
   return await userRepository.insert(model);
 }
 
-export async function remove(id) {
+export async function remove(id: number): Promise<void> {
   return await userRepository.remove(id);
 }

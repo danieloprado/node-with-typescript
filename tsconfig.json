@@ -4,7 +4,9 @@
     "target": "es2017",
     "module": "commonjs",
     "moduleResolution": "node",
-    "outDir": "output"
+    "outDir": "output",
+    "noImplicitAny": true,
+    "sourceMap": true
   },
   "include": [
     "src/**/*.ts"

@@ -1,5 +1,7 @@
 import * as joi from 'joi';
 
+import { IUser } from '../interfaces/user';
+
 const schema = joi.object().keys({
   id: joi.number().min(1),
   name: joi.string().required().min(3),
@@ -12,7 +14,7 @@ const options = {
   abortEarly: false
 };
 
-export default function validate(body) {
+export default function validate(body: any): Promise<IUser> {
   return new Promise((resolve, reject) => {
     joi.validate(body, schema, options, (err, value) => {
       if (err) {
