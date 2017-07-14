@@ -8,14 +8,21 @@ export class User extends Model implements IUser {
   email: string;
   age: number;
 
-  static tableName = 'User';
-  static relationMappings = {
-    posts: {
-      relation: Model.HasManyRelation,
-      modelClass: Post,
-      join: {
-        from: 'id',
-        to: 'userId'
+  posts?: Post[];
+
+  static get tableName() {
+    return 'User';
+  }
+
+  static get relationMappings() {
+    return {
+      posts: {
+        relation: Model.HasManyRelation,
+        modelClass: Post,
+        join: {
+          from: 'User.id',
+          to: 'Post.userId'
+        }
       }
     }
   }

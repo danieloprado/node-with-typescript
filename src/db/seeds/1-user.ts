@@ -12,15 +12,4 @@ export async function seed(knex: Knex) {
     email: 'danielprado.ad@gmail.com',
     age: 25
   }).into('User');
-
-  const user = await knex.from('User').first();
-
-  await knex.insert({
-    title: 'Meu post',
-    slug: 'meu-post',
-    content: 'Não tem nada aqui',
-    userId: user.id,
-    createdDate: new Date(),
-    updatedDAte: new Date()
-  }).into('Post');
-};
+}

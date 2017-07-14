@@ -8,9 +8,8 @@ export const router = express.Router({ mergeParams: true });
 
 router.get('/', async (req, res, next) => {
   try {
-    throw new Error('here');
-    // const users = await userRepository.list();
-    // res.json(users);
+    const users = await userRepository.list();
+    res.json(users);
   } catch (err) {
     next(err);
   }

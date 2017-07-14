@@ -1,5 +1,5 @@
-Node Typescript
-===============
+Node Typescript + SQL
+=====================
 
 Links
 -----

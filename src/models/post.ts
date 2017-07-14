@@ -10,16 +10,23 @@ export class Post extends Model implements IPost {
   createdDate: Date;
   updatedDate: Date;
 
-  static tableName = 'Post';
-  static relationMappings = {
-    user: {
-      relation: Model.HasOneRelation,
-      modelClass: Post,
-      join: {
-        from: 'userId',
-        to: 'id'
+  user?: User;
+
+  static get tableName() {
+    return 'Post';
+  }
+
+  static get relationMappings() {
+    return {
+      user: {
+        relation: Model.HasOneRelation,
+        modelClass: User,
+        join: {
+          from: 'Post.userId',
+          to: 'User.id'
+        }
       }
-    }
+    };
   }
 
   $beforeInsert() {

@@ -5,29 +5,24 @@ import { User } from '../models/user';
 
 const users: IUser[] = [];
 
-export async function list() {
-  return User.query().eager('posts');
+export async function list(): Promise<User[]> {
+  return User.query().eager('posts').modifyEager('posts', builder => {
+    builder.where('slug', 'like', 'meu-post%')
+  });
 }
 
-export async function find(id: number) {
-  return User.query().where({ id });
+export async function find(id: number): Promise<User> {
+  return User.query().where({ id }).first();
 }
 
-export async function insert(user: IUser) {
-  user.id = users.length + 1;
-  users.push(user);
-
-  return user;
+export async function insert(user: IUser): Promise<User> {
+  return User.query().insert(user);
 }
 
-export async function update(user: IUser) {
-  const userDb = users.find(u => u.id === user.id);
-  lodash.merge(userDb, user);
-
-  return userDb;
+export async function update(user: IUser): Promise<User> {
+  return User.query().updateAndFetchById(user.id, user);
 }
 
-export async function remove(userId: number) {
-  const index = users.findIndex(u => u.id === userId);
-  users.splice(index, 1);
+export async function remove(userId: number): Promise<void> {
+  await User.query().deleteById(userId);
 }
