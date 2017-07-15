@@ -4,6 +4,7 @@ const express = require('express'),
   userRoutes = require('./routes/user');
 
 const app = express();
+
 app.use(bodyParser.json());
 app.use(morgan('dev'));
 
@@ -17,4 +18,4 @@ app.use((err, req, res, next) => {
   res.status(500).send(err.stack);
 });
 
-app.listen(8080, () => console.log('done.'));
+app.listen(3000, () => console.log('done.'));
