@@ -1,6 +1,11 @@
 const lodash = require('lodash');
 
-const users = [];
+const users = [{
+  "name": "Daniel Prado",
+  "email": "danielprado.ad@gmail.com",
+  "age": 25,
+  "id": 1
+}];
 
 async function list() {
   return users;
